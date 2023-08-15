@@ -9,15 +9,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * Created by jt on 5/16/20.
  */
 @Configuration
-@Profile("basic-auth")
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Profile("!basic-auth")
+public class WebSecurityConfigPermitAll extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic();
+                .anyRequest().permitAll();
     }
 }
